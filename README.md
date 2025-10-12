@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Deep Research AI](https://img.shields.io/badge/Deep%20Research%20AI-v4.0-blue?style=for-the-badge&logo=openai)
+![Deep Research AI](https://img.shields.io/badge/Deep%20Research%20AI-v1.0-blue?style=for-the-badge&logo=openai)
 ![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-teal?style=for-the-badge&logo=fastapi)
 ![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
@@ -11,6 +11,7 @@
 **An advanced AI-powered research system combining multi-agent architecture with cutting-edge reasoning techniques**
 
 [Features](#-features) • [Architecture](#-system-architecture) • [Installation](#-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [Screenshots](#-screenshots)
+
 
 </div>
 
@@ -31,6 +32,7 @@
 - [Project Structure](#-project-structure)
 - [Contributing](#-contributing)
 - [License](#-license)
+
 
 ---
 
@@ -89,65 +91,100 @@
 - Configurable research depth (3-10 tasks)
 
 ---
-
 ## 🏗️ System Architecture
 
 ### Workflow Diagram
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Step 1: Query Planning                       │
-│  ┌──────────────┐      ┌────────────────┐      ┌─────────────┐  │
-│  │ User Query   │─────▶│  Chain of     │─────▶│ Task        │  │
-│  │              │      │   Thought      │      │ Decomposition│ │
-│  └──────────────┘      │ Decomposition  │      └─────────────┘  │
-│                        └────────────────┘                       │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│              Step 2: Multi-Agent Execution                      │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐       │
-│  │  Agent 1:    │    │  Agent 2:    │    │  Agent 3:    │       │
-│  │  Market      │    │  Competition │    │  Technology  │       │
-│  │  Analysis    │    │  Research    │    │  Analysis    │       │
-│  └──────┬───────┘    └──────┬───────┘    └──────┬───────┘       │
-│         │                   │                   │               │
-│         ▼                   ▼                   ▼               │
-│  [Web Search x3]     [Web Search x3]     [Web Search x3]        │
-│         │                   │                   │               │
-│         └───────────────────┴───────────────────┘               │
-│                             │                                   │
-└─────────────────────────────┼──────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│            Step 3: Synthesis & Validation                       │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │         Self-Consistency Aggregation                     │   │
-│  │  • Deduplicate sources                                   │   │
-│  │  • Cross-validate information                            │   │
-│  │  • Calculate confidence scores                           │   │
-│  └────────────────────────┬─────────────────────────────────┘   │
-│                           ▼                                     │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │         LLM Synthesis (Sequential Revision)              │   │
-│  │  • Generate executive summary                            │   │
-│  │  • Create detailed sections                              │   │
-│  │  • Format citations                                      │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Step 4: Final Output                         │
-│  ┌────────────────┐    ┌────────────────┐    ┌──────────────┐   │
-│  │ Executive      │    │ Detailed       │    │ Verified     │   │
-│  │ Summary        │    │ Sections       │    │ Sources      │   │
-│  └────────────────┘    └────────────────┘    └──────────────┘   │
-│                                                                 │
-│             📥 Download: Markdown | JSON                        │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#ffffff",
+    "primaryTextColor": "#1f2937",
+    "lineColor": "#9ca3af",
+    "edgeLabelBackground":"#ffffff",
+    "fontSize": "14px",
+    "fontFamily": "Inter, sans-serif",
+    "tertiaryColor": "#f3f4f6"
+  }
+}}%%
+
+graph TB
+    Start(["🔍 User Research Query"]) --> Step1
+
+    %% STEP 1
+    subgraph Step1["Step 1 ▸ Query Analysis & Planning"]
+        A["🧩 User Query Input"] --> B["🧠 Chain of Thought<br/>Decomposition"]
+        B --> C["🔎 Query Analysis"]
+        C --> D["🗂️ Generate Research Dimensions"]
+        D --> E["🌳 Create Sub-Queries (Tree of Thoughts)"]
+    end
+
+    Step1 --> Step2
+
+    %% STEP 2
+    subgraph Step2["Step 2 ▸ Multi-Agent Execution"]
+        E --> F1["🤖 Agent 1<br/>Market Analysis"]
+        E --> F2["🤖 Agent 2<br/>Competition Research"]
+        E --> F3["🤖 Agent 3<br/>Technical Analysis"]
+        
+        F1 --> G1["🌐 Web Search 1"]
+        F1 --> G2["🌐 Web Search 2"]
+        F1 --> G3["🌐 Web Search 3"]
+        
+        F2 --> H1["🌐 Web Search 1"]
+        F2 --> H2["🌐 Web Search 2"]
+        F2 --> H3["🌐 Web Search 3"]
+        
+        F3 --> I1["🌐 Web Search 1"]
+        F3 --> I2["🌐 Web Search 2"]
+        F3 --> I3["🌐 Web Search 3"]
+        
+        G1 --> J1["📄 Aggregated Results (Agent 1)"]
+        H1 --> J2["📄 Aggregated Results (Agent 2)"]
+        I1 --> J3["📄 Aggregated Results (Agent 3)"]
+    end
+
+    Step2 --> Step3
+
+    %% STEP 3
+    subgraph Step3["Step 3 ▸ Synthesis & Validation"]
+        J1 --> K["📊 Aggregate All Results"]
+        J2 --> K
+        J3 --> K
+        K --> L["🧩 Self-Consistency Validation"]
+        L --> M["🧹 Deduplicate Sources"]
+        M --> N["📈 Confidence Scoring"]
+        N --> O["🔁 Cross-Validation"]
+        O --> P["💡 Extract Key Insights"]
+        P --> Q["🧠 LLM Synthesis (Sequential Revision)"]
+        Q --> R["🗒️ Generate Executive Summary"]
+        R --> S["📚 Create Detailed Sections"]
+    end
+
+    Step3 --> Step4
+
+    %% STEP 4
+    subgraph Step4["Step 4 ▸ Final Output"]
+        S --> T["🧾 Format Citations"]
+        T --> U["✅ Verification Report"]
+        U --> V["📘 Complete Research Report"]
+        V --> W1["⬇️ Download Markdown"]
+        V --> W2["⬇️ Download JSON"]
+        V --> W3["🌐 View in Browser"]
+    end
+
+    W3 --> End(["🎯 User Receives Results"])
+
+    %% STYLE DEFINITIONS
+    style Start fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+    style End fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#064e3b
+
+    style Step1 fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+    style Step2 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#312e81
+    style Step3 fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#064e3b
+    style Step4 fill:#fff7ed,stroke:#f97316,stroke-width:2px,color:#7c2d12
+
 ```
 
 ### Advanced Reasoning Techniques
@@ -197,7 +234,7 @@ The system implements multiple state-of-the-art AI reasoning approaches:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/deep-research-ai.git
+git clone https://github.com/AdiityaRaj/deep-research-ai.git
 cd deep-research-ai
 
 # Create virtual environment
@@ -383,42 +420,42 @@ Once backend is running, visit:
 ### Main Interface
 *Beautiful landing page with example queries and animated gradient background*
 
-![Main Interface](docs/screenshots/main-interface.png)
+![Main Interface](doc/screenshots/main-interface.png)
 
 ### Research in Progress
 *Real-time progress tracking with stage updates and animated progress bar*
 
-![Research Progress](docs/screenshots/research-progress.png)
+![Research Progress](doc/screenshots/research-progress.png)
 
 ### Results Dashboard
 *Comprehensive results with metrics, agent strategy, and sections*
 
-![Results Dashboard](docs/screenshots/results-dashboard.png)
+![Results Dashboard](doc/screenshots/results-dashboard.png)
 
 ### Executive Summary
 *AI-generated comprehensive summary of research findings*
 
-![Executive Summary](docs/screenshots/executive-summary.png)
+![Executive Summary](doc/screenshots/executive-summary.png)
 
 ### Detailed Sections
 *Expandable sections with key findings and source citations*
 
-![Detailed Sections](docs/screenshots/detailed-sections.png)
+![Detailed Sections](doc/screenshots/detailed-sections.png)
 
 ### Source Verification
 *Sources with confidence scores and verification badges*
 
-![Source Verification](docs/screenshots/source-verification.png)
+![Source Verification](doc/screenshots/source-verification.png)
 
 ### Research Strategy
 *Multi-agent deployment showing parallel research dimensions*
 
-![Research Strategy](docs/screenshots/research-strategy.png)
+![Research Strategy](doc/screenshots/research-strategy.png)
 
 ### Full web Page  
 *Multi-agent deployment showing full web page of deep research ai*
 
-![Web Page](docs/screenshots/full-page.png)
+![Web Page](doc/screenshots/full-page.png)
 ---
 
 ## 🌐 Deployment
@@ -616,20 +653,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/AdiityaRaj/deep-research-ai/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/AdiityaRaj/deep-research-ai/discussions)
-- **Email**: your.email@example.com
+- **Email**: rajaditya2424@gmail.com
 
 ---
 
 ## 🗺️ Roadmap
 
-### Version 4.1 (Upcoming)
+### Version 1.1 (Upcoming)
 - [ ] WebSocket support for real-time updates
 - [ ] User authentication and query history
 - [ ] Custom agent configuration
 - [ ] PDF export functionality
 - [ ] Batch research processing
 
-### Version 5.0 (Future)
+### Version 2.0 (Future)
 - [ ] Local LLM support (Ollama)
 - [ ] Advanced visualization charts
 - [ ] Collaborative research features
@@ -642,7 +679,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you find this project useful, please consider giving it a star!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/deep-research-ai&type=Date)](https://star-history.com/#yourusername/deep-research-ai&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=AdiityaRaj/deep-research-ai&type=Date)](https://star-history.com/#AdiityaRaj/deep-research-ai&Date)
 
 ---
 
