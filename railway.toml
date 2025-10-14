@@ -1,0 +1,6 @@
+# railway.toml
+[build]
+root = "backend"
+
+[deploy]
+startCommand = "python main.py"
