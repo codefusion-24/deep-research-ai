@@ -7,7 +7,7 @@ from research_agent import DeepResearchAgent
 
 app = FastAPI(
     title="Deep Research AI - Full System",
-    version="4.0",
+    version="1.0",
     description="Advanced multi-agent research system with Chain of Thought, Self-Consistency, and LLM synthesis"
 )
 
