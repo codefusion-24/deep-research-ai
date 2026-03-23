@@ -3,6 +3,7 @@ import aiohttp
 import requests
 from typing import List, Dict, Any
 from config import config
+from tavily import TavilyClient
 import time
 
 
@@ -60,7 +61,10 @@ class MultiAgentExecutor:
         for idx, query in enumerate(queries):
             try:
                 # Perform search
-                results = await self._search_serpapi(query)
+                if self.config.SEARCH_PROVIDER == "tavily":
+                    results = await self._search_tavily(query)
+                else:
+                    results = await self._search_serpapi(query)
                 all_results.extend(results)
                 
                 progress = int(((idx + 1) / len(queries)) * 100)
@@ -103,6 +107,36 @@ class MultiAgentExecutor:
             'result_count': len(all_results)
         }
     
+    async def _search_tavily(self, query: str) -> List[Dict[str, Any]]:
+        """
+        Perform web search using Tavily API
+        """
+        try:
+            client = TavilyClient(api_key=self.config.TAVILY_API_KEY)
+            loop = asyncio.get_event_loop()
+            response = await loop.run_in_executor(
+                None,
+                lambda: client.search(
+                    query=query,
+                    max_results=10,
+                    search_depth="advanced",
+                )
+            )
+
+            return [
+                {
+                    'title': result.get('title', ''),
+                    'url': result.get('url', ''),
+                    'snippet': result.get('content', ''),
+                    'position': idx + 1,
+                    'source_query': query
+                }
+                for idx, result in enumerate(response.get('results', []))
+            ]
+        except Exception as e:
+            print(f"Tavily search error: {e}")
+            return []
+
     async def _search_serpapi(self, query: str) -> List[Dict[str, Any]]:
         """
         Perform async web search using SerpAPI

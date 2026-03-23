@@ -60,6 +60,8 @@ def health_check():
         "status": "healthy",
         "openrouter_configured": bool(config.OPENROUTER_API_KEY),
         "serpapi_configured": bool(config.SERPAPI_KEY),
+        "tavily_configured": bool(config.TAVILY_API_KEY),
+        "search_provider": config.SEARCH_PROVIDER,
         "model": config.MODEL_NAME,
         "max_parallel_agents": config.MAX_PARALLEL_AGENTS
     }
