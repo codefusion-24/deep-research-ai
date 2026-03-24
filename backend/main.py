@@ -56,10 +56,19 @@ def health_check():
     """Detailed health check"""
     from config import config
     
+    provider = config.SEARCH_PROVIDER
+    if provider == "tavily":
+        search_provider_ready = bool(config.TAVILY_API_KEY)
+    else:
+        search_provider_ready = bool(config.SERPAPI_KEY)
+
     return {
         "status": "healthy",
         "openrouter_configured": bool(config.OPENROUTER_API_KEY),
         "serpapi_configured": bool(config.SERPAPI_KEY),
+        "tavily_configured": bool(config.TAVILY_API_KEY),
+        "search_provider": provider,
+        "search_provider_ready": search_provider_ready,
         "model": config.MODEL_NAME,
         "max_parallel_agents": config.MAX_PARALLEL_AGENTS
     }

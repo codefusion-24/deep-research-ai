@@ -6,6 +6,8 @@ load_dotenv()
 class Config:
     OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
     SERPAPI_KEY = os.getenv("SERPAPI_KEY")
+    TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+    SEARCH_PROVIDER = os.getenv("SEARCH_PROVIDER", "serpapi")
     MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-4o-mini")
     
     # API Endpoints

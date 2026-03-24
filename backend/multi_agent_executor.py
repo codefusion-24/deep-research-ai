@@ -3,6 +3,7 @@ import aiohttp
 import requests
 from typing import List, Dict, Any
 from config import config
+from tavily import AsyncTavilyClient
 import time
 
 
@@ -11,10 +12,21 @@ class MultiAgentExecutor:
     Implements parallel multi-agent search execution with progress tracking.
     Each agent is responsible for one research dimension.
     """
-    
+
     def __init__(self):
         self.config = config
         self.progress_callback = None
+
+        # Pre-initialize Tavily client if configured
+        if self.config.SEARCH_PROVIDER == "tavily":
+            if not self.config.TAVILY_API_KEY:
+                raise ValueError(
+                    "TAVILY_API_KEY must be set when SEARCH_PROVIDER is 'tavily'. "
+                    "Set the TAVILY_API_KEY environment variable or switch SEARCH_PROVIDER to 'serpapi'."
+                )
+            self._tavily_client = AsyncTavilyClient(api_key=self.config.TAVILY_API_KEY)
+        else:
+            self._tavily_client = AsyncTavilyClient(api_key=self.config.TAVILY_API_KEY) if self.config.TAVILY_API_KEY else None
     
     def set_progress_callback(self, callback):
         """Set callback for progress updates"""
@@ -60,7 +72,10 @@ class MultiAgentExecutor:
         for idx, query in enumerate(queries):
             try:
                 # Perform search
-                results = await self._search_serpapi(query)
+                if self.config.SEARCH_PROVIDER == "tavily":
+                    results = await self._search_tavily(query)
+                else:
+                    results = await self._search_serpapi(query)
                 all_results.extend(results)
                 
                 progress = int(((idx + 1) / len(queries)) * 100)
@@ -103,6 +118,34 @@ class MultiAgentExecutor:
             'result_count': len(all_results)
         }
     
+    async def _search_tavily(self, query: str) -> List[Dict[str, Any]]:
+        """
+        Perform web search using Tavily async API
+        """
+        if not self._tavily_client:
+            raise ValueError("Tavily client is not initialized. Set TAVILY_API_KEY environment variable.")
+
+        try:
+            response = await self._tavily_client.search(
+                query=query,
+                max_results=10,
+                search_depth="advanced",
+            )
+
+            return [
+                {
+                    'title': result.get('title', ''),
+                    'url': result.get('url', ''),
+                    'snippet': result.get('content', ''),
+                    'position': idx + 1,
+                    'source_query': query
+                }
+                for idx, result in enumerate(response.get('results', []))
+            ]
+        except Exception as e:
+            print(f"Tavily search error: {e}")
+            return []
+
     async def _search_serpapi(self, query: str) -> List[Dict[str, Any]]:
         """
         Perform async web search using SerpAPI
